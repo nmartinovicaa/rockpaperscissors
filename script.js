@@ -100,10 +100,11 @@ paperButton.addEventListener('click', function() {
     else if (computerScore === 5)
     {
         scoreboardDiv.textContent = `Computer wins!!    Computer: ${computerScore}    Human: ${humanScore}`
-    } else {
-        scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
         humanScore = 0;
         computerScore = 0;
+    } else {
+        scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
+
     }
 
 })
@@ -127,8 +128,7 @@ scissorsButton.addEventListener('click',function() {
     } else {
         scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
     }
-    humanScore = 0;
-    computerScore = 0;
+
 
 })
 
