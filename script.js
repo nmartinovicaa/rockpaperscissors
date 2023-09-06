@@ -8,7 +8,7 @@ function getComputerChoice() {
 }
 
 function playerSelection() {
-    let playerChoice = prompt('Pick Rock, Paper, or Scissors')
+
 
     while (playerChoice.toLowerCase() !== ('rock') && playerChoice.toLowerCase() !== ('paper') && playerChoice.toLowerCase() !== ('scissors')) {
         alert('Please select Rock, Paper, or Scissors only')
@@ -57,21 +57,90 @@ function playSingleRound(playerSelection,computerSelection) {
     }
 }
 
-function play() {
+const rockButton = document.querySelector(".rock")
+const paperButton = document.querySelector(".paper")
+const scissorsButton = document.querySelector(".scissors")
+const resultsDiv = document.querySelector(".results")
+const scoreboardDiv = document.querySelector(".scoreboard")
 
-    for (let i = 0; i < 5; i++)
+rockButton.addEventListener('click', function() {
+    let winner = playSingleRound('rock',getComputerChoice())
+    scoreboardDiv.textContent = ''
+    winnerDetermination(winner)
+    resultsDiv.textContent = winner
+    if (humanScore === 5)
     {
-        let roundWinner = playSingleRound(playerSelection(),getComputerChoice())
-        if (roundWinner[0] === 'C')
-        {
-            computerScore++;
-        }
-        else if (roundWinner[0] === 'P')
-        {
-            humanScore++;
-        }
-        console.log(roundWinner)
+    scoreboardDiv.textContent = `Human wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+    humanScore = 0;
+    computerScore = 0;
     }
-    console.log(`Final Score: Computer: ${computerScore}    Human: ${humanScore}`)
+    else if (computerScore === 5)
+    {
+        scoreboardDiv.textContent = `Computer wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+        humanScore = 0;
+        computerScore = 0;
+    } else {
+        scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
+    }
+
+
+})
+
+paperButton.addEventListener('click', function() {
+    scoreboardDiv.textContent = ''
+    let winner = playSingleRound('paper',getComputerChoice())
+    winnerDetermination(winner)
+    resultsDiv.textContent = winner
+    if (humanScore === 5)
+    {
+    scoreboardDiv.textContent = `Human wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+    humanScore = 0;
+    computerScore = 0;
+    }
+    else if (computerScore === 5)
+    {
+        scoreboardDiv.textContent = `Computer wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+    } else {
+        scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
+        humanScore = 0;
+        computerScore = 0;
+    }
+
+})
+
+scissorsButton.addEventListener('click',function() {
+    scoreboardDiv.textContent = ''
+    let winner = playSingleRound('scissors',getComputerChoice())
+    winnerDetermination(winner)
+    resultsDiv.textContent = winner
+    if (humanScore === 5)
+    {
+    scoreboardDiv.textContent = `Human wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+    humanScore = 0;
+    computerScore = 0;
+    }
+    else if (computerScore === 5)
+    {
+        scoreboardDiv.textContent = `Computer wins!!    Computer: ${computerScore}    Human: ${humanScore}`
+        humanScore = 0;
+        computerScore = 0;
+    } else {
+        scoreboardDiv.textContent = `Computer: ${computerScore}    Human: ${humanScore}`
+    }
+    humanScore = 0;
+    computerScore = 0;
+
+})
+
+
+function winnerDetermination(results)
+{
+    if (results[0] === 'P')
+    {
+        humanScore++
+    } else if (results[0] === 'C')
+    {
+        computerScore++
+    }
 
 }
